@@ -77,6 +77,22 @@ public class AmazonTest {
         String itemTextInCart = itemText.getText().substring(0,itemText.getText().length()-3); // deletes the ... part at the end
         Assert.assertTrue(firstLaptopText.contains(itemTextInCart));
 
+        // Step 9
+        WebElement deleteInCart = driver.findElement(By.cssSelector("input[value=\"Sil\"]"));
+        deleteInCart.click();
+
+        // Step 10
+        Thread.sleep(1000);
+        String expectedTitle2 = "Amazon sepetiniz boş";
+        String cartDeletedText = driver.findElement(By.xpath
+                ("//h1[contains(text(), \"Amazon sepetiniz boş.\")]")).getText(); // for avoiding stale element error
+        Assert.assertTrue(cartDeletedText.contains(expectedTitle2));
+
+        // Step 11
+        WebElement mainPageBtn = driver.findElement(By.id("nav-logo-sprites"));
+        mainPageBtn.click();
+
+        // Step 12
         driver.quit();
     }
 }
