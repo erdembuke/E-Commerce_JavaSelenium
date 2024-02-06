@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class N11Test {
-    // JUnit jupiter used in this test class
     private WebDriver driver;
 
     @BeforeEach
@@ -60,7 +59,6 @@ public class N11Test {
     }
 
 
-    // test note: after navigating cart, KVKK close button element is not interactable waiting to handle (Line 106)
     @Test
     public void addToCartAndDeleteTest() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -103,8 +101,20 @@ public class N11Test {
         Thread.sleep(500);
         WebElement cartBtn = driver.findElement(By.cssSelector("a[title=\"Sepetim\"]"));
         cartBtn.click();
+        String mainWindowHandle = driver.getWindowHandle();
 
-        Thread.sleep(5000); // you need to close KVKK manually here, while app is waiting
+        // Changing window to handle reach KVKK accept button
+        Thread.sleep(500);
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!windowHandle.equals(mainWindowHandle)){
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+        }
+
+        WebElement acceptBtn = driver.findElement(By.cssSelector("#userKvkkModal span[class=\"btn btnBlack\"]"));
+        acceptBtn.click();
+        driver.switchTo().window(mainWindowHandle); // switching back to the main window after hit "accept"
 
         WebElement prodPrice = driver.findElement(By.cssSelector("div[class=\"dtl total\"] .price"));
         String priceOfItemInCart = prodPrice.getText();
@@ -125,7 +135,6 @@ public class N11Test {
 
         WebElement deleteBtnConfirm = driver.findElement(By.id("deleteBtnDFLB"));
         deleteBtnConfirm.click();
-        Thread.sleep(500);
 
         js.executeScript("window.scrollTo(0,0);");
         Thread.sleep(500);
@@ -133,7 +142,5 @@ public class N11Test {
         Assertions.assertTrue(emptyCart.getText().toLowerCase().contains("sepetin boş görünüyor"));
 
     }
-
-
 
 }
