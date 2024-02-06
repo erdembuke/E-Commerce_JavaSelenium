@@ -1,4 +1,4 @@
-package TestNG;
+package _TestNG;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
