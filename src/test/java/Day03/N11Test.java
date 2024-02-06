@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class N11_e2e {
+public class N11Test {
     // JUnit jupiter used in this test class
     private WebDriver driver;
 
@@ -29,6 +29,7 @@ public class N11_e2e {
 
     @Test
     public void searchProductTest() {
+        System.out.println("--- searchProductTest starts ---");
         // Assertion of the title
         String mainTitle = driver.getTitle();
         System.out.println(mainTitle);
@@ -56,7 +57,11 @@ public class N11_e2e {
         // Navigate back and return
         driver.navigate().back();
         driver.navigate().forward();
+
+        System.out.println("--- searchProduct ends ---");
     }
+
+
 
 
 

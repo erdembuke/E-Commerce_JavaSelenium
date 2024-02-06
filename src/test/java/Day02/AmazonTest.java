@@ -5,11 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 public class AmazonTest {
-
-    public static void main(String[] args) throws InterruptedException {
-        /*
+    /*
         Step 1: ChromeDriver'in yerini belirtiyoruz ve WebDriver'i baslatiyoruz
         Step 2: Amazon Web sitesine gidiyoruz
         Step 3: Arama kutusunu buluyoruz ve içine "laptop" kelimesini yazıyoruz
@@ -27,13 +28,27 @@ public class AmazonTest {
         Assertion 3: Ürün adının boş olmadığını kontrol ediyoruz
         Assertion 4: Ürün fiyatının boş olmadığını kontrol ediyoruz
          */
-
+    private WebDriver driver;
+    @BeforeTest
+    public void setup() {
         // Step 1
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize(); // fullscreen
 
         // Step 2
-        driver.get("https://www.amazon.com.tr/");
+        driver.get("https://www.amazon.com.tr");
+    }
+
+    @AfterTest
+    public void tearDown() {
+        // Step 12
+        driver.quit();
+    }
+
+
+    @Test
+    public void e2eTest() throws InterruptedException {
+
         WebElement cookies = driver.findElement(By.id("sp-cc-accept")); // accepting cookies
         cookies.click();
 
@@ -92,7 +107,6 @@ public class AmazonTest {
         WebElement mainPageBtn = driver.findElement(By.id("nav-logo-sprites"));
         mainPageBtn.click();
 
-        // Step 12
-        driver.quit();
     }
+
 }
