@@ -1,5 +1,6 @@
-package Utilities;
+package Pages;
 
+import Utilities.GWD;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ReusableMethods {
+public class Parent {
     WebDriverWait wait = new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(20));
     Actions actions = new Actions(GWD.getDriver());
 
@@ -35,6 +36,18 @@ public class ReusableMethods {
         FileUtils.copyFile(source, finalDestination);
 
         return target;
+    }
+
+    //========Switching Window=====//
+    public void switchToWindow(String targetTitle) {
+        String origin = GWD.getDriver().getWindowHandle();
+        for (String handle : GWD.getDriver().getWindowHandles()) {
+            GWD.getDriver().switchTo().window(handle);
+            if (GWD.getDriver().getTitle().equals(targetTitle)) {
+                return;
+            }
+        }
+        GWD.getDriver().switchTo().window(origin);
     }
 
     public void hoverToTheElement(WebElement element) {

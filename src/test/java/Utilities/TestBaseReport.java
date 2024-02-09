@@ -1,5 +1,6 @@
 package Utilities;
 
+import Pages.Parent;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -9,7 +10,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.io.IOException;
-import java.sql.Driver;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -42,7 +42,7 @@ public abstract class TestBaseReport {
     public void tearDownMethod(ITestResult result) throws IOException {
         // If test failed, take screenshot and add to the report
         if (result.getStatus() == ITestResult.FAILURE) {
-            String screenshotLocation = ReusableMethods.getScreenshot(result.getName());
+            String screenshotLocation = Parent.getScreenshot(result.getName());
             extentTest.fail(result.getName()); // Save test as failed
             extentTest.addScreenCaptureFromPath(screenshotLocation); // add screenshot to the report
             extentTest.fail(result.getThrowable()); // save error details
