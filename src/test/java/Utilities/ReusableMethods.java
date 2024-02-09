@@ -37,9 +37,14 @@ public class ReusableMethods {
         return target;
     }
 
-    public void hover(WebElement element) {
+    public void hoverToTheElement(WebElement element) {
         Action hover = actions.moveToElement(element).build();
         hover.perform();
+    }
+
+    public void doubleClickToElement(WebElement element) {
+        Action doubleClick = actions.doubleClick(element).build();
+        doubleClick.perform();
     }
 
     public List<String> listWebToListString(List<WebElement> elementList) {
