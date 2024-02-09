@@ -37,5 +37,23 @@ public class AmazonPage {
     @FindBy(css = "span[class=\"a-size-base-plus a-color-base a-text-normal\"]")
     public List<WebElement> productTitles;
 
+    @FindBy(id = "nav-link-accountList")
+    public WebElement loginNavBtn;
+
+    @FindBy(id = "ap_email")
+    public WebElement inputMail;
+
+    @FindBy(id = "ap_password")
+    public WebElement inputPassword;
+
+    @FindBy(id = "continue")
+    public WebElement continueBtn;
+
+    @FindBy(id = "signInSubmit")
+    public WebElement loginBtn;
+
+    @FindBy(css = "div h4")
+    public WebElement alertBox;
+
 
 }

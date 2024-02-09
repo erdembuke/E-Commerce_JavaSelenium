@@ -10,21 +10,21 @@ import org.testng.annotations.Test;
 public class AmazonTest {
     AmazonPage ap = new AmazonPage(); // for calling WebElements
 
-    @Test
+    @Test(priority = 2) // prioritizing and test cases
     public void searchProduct() throws InterruptedException {
         // Navigate to Amazon
         GWD.getDriver().get(ConfigReader.getProperty("amazonUrl"));
         ap.rejectCookies.click();
 
         // Type "Apple MacBook M3" in Search Box
-        ap.searchBox.sendKeys(ConfigReader.getProperty("textAmazon1"));
+        ap.searchBox.sendKeys(ConfigReader.getProperty("textAmazon"));
         ap.searchBtn.click();
         Thread.sleep(500);
 
         // Assert the title contains searched product name
         String title = GWD.getDriver().getTitle();
         System.out.println("title -> " + title);
-        Assert.assertTrue(title.contains(ConfigReader.getProperty("textAmazon1")));
+        Assert.assertTrue(title.contains(ConfigReader.getProperty("textAmazon")));
 
         String firstItemText = ap.firstItemAfterSearch.getText();
         System.out.println("Item: " + firstItemText);
@@ -53,8 +53,22 @@ public class AmazonTest {
         System.out.println("item count -> " + count);
         Assert.assertEquals(count,ap.productTitles.size());
 
-
         GWD.quitDriver();
+    }
+
+    @Test(priority = 1) // prioritizing test cases
+    public void loginNegativeTest() {
+        // navigating to the login page
+        GWD.getDriver().get(ConfigReader.getProperty("amazonUrl"));
+        ap.loginNavBtn.click();
+
+        // input e-mail and continue
+        ap.inputMail.sendKeys(ConfigReader.getProperty("emailAmazon"));
+        ap.continueBtn.click();
+
+        // Assertion of alertbox
+        Assert.assertTrue(ap.alertBox.isDisplayed());
+
     }
 
 
