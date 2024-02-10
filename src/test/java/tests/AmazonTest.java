@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
-import Pages.AmazonPage;
-import Utilities.ConfigReader;
-import Utilities.GWD;
+import pages.AmazonPage;
+import utilities.ConfigReader;
+import utilities.GWD;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;

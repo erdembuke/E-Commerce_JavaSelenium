@@ -1,6 +1,6 @@
-package Utilities;
+package utilities;
 
-import Pages.Parent;
+import pages.Parent;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;

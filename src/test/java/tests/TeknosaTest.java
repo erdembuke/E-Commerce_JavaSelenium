@@ -1,9 +1,9 @@
-package Tests;
+package tests;
 
-import Pages.TeknosaPage;
-import Utilities.ConfigReader;
-import Utilities.GWD;
-import Utilities.TestBaseReport;
+import pages.TeknosaPage;
+import utilities.ConfigReader;
+import utilities.GWD;
+import utilities.TestBaseReport;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

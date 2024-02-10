@@ -1,6 +1,6 @@
-package Pages;
+package pages;
 
-import Utilities.GWD;
+import utilities.GWD;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;

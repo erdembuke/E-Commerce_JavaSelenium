@@ -1,4 +1,4 @@
-package _JUnit;
+package _junit;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
